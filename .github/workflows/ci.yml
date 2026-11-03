@@ -19,12 +19,6 @@ jobs:
         run: npm ci
       - name: Check types
         run: npm run check
-      - name: Upload the build
-        uses: actions/upload-artifact@v7
-        with:
-          name: dist
-          path: dist
-          if-no-files-found: error
 
   test:
     runs-on: ubuntu-latest
@@ -42,11 +36,13 @@ jobs:
         run: npm ci
       - name: Run tests
         run: npm run test:run
+      - name: run test with coverage
+        run: npm run coverage
       - name: Upload the build
         uses: actions/upload-artifact@v7
         with:
-          name: dist
-          path: dist
+          name: coverage
+          path: coverage
           if-no-files-found: error
 
   build:
